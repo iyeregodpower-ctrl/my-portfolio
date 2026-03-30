@@ -1010,3 +1010,34 @@ body.dark-mode .image-backdrop {
 a:hover {
     color: #4f46e5; /* Or any dark color so it stays visible against white */
 }
+
+/* --- TECH STACK BADGES FOR PROJECT CARDS --- */
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.tech-stack span {
+    background-color: var(--surface-color);
+    color: var(--text-muted);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+/* Make sure they look sharp in Dark Mode */
+body.dark-mode .tech-stack span {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.tech-stack span:hover {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border-color: var(--accent-color);
+}
