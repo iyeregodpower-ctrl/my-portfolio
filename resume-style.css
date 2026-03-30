@@ -222,3 +222,227 @@ body {
         padding-bottom: 10px;
     }
 }
+:root {
+    --gold: #d4af37;
+    --dark: #1a1a1a;
+    --gray: #f4f4f4;
+    --text: #333;
+}
+
+body {
+    background: #e0e0e0;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+.resume-container {
+    background: #fff;
+    width: 210mm; /* A4 Width */
+    min-height: 297mm; /* A4 Height */
+    display: flex;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 35%;
+    background: var(--dark);
+    color: #fff;
+    padding: 40px 30px;
+}
+
+.resume-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+.sidebar h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin: 0;
+    color: var(--gold);
+}
+
+.tagline {
+    font-size: 0.85rem;
+    color: #ccc;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sidebar h3 {
+    color: var(--gold);
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
+    margin-top: 40px;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #ddd;
+}
+
+.sidebar a { color: #fff; text-decoration: none; }
+
+/* Main Content */
+.main-content {
+    width: 65%;
+    padding: 50px;
+    color: var(--text);
+}
+
+.main-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    border-left: 4px solid var(--gold);
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
+.project-item, .edu-item {
+    margin-bottom: 25px;
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.project-header h3 { margin: 0; font-size: 1.1rem; }
+.project-header span { color: var(--gold); font-weight: 600; font-size: 0.8rem; }
+
+.main-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Print Button */
+.print-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    background: var(--gold);
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 50px;
+}
+
+/* PRINT SETTINGS */
+@media print {
+    body { background: white; padding: 0; }
+    .resume-container { box-shadow: none; width: 100%; }
+    .print-btn { display: none; }
+}
+@media (max-width: 768px) {
+    /* 1. Force the Contact Section to Stack */
+    .contact-container {
+        display: flex;
+        flex-direction: column; /* This moves the form UNDER the text */
+        align-items: center;    /* Centers everything horizontally */
+        gap: 40px;
+        width: 100% !important;
+        padding: 0 5%;          /* Small side breathing room */
+    }
+
+    /* 2. Make Text and Form take 100% Width */
+    .contact-text, 
+    .contact-form {
+        width: 100% !important;
+        max-width: 100% !important;
+        text-align: center;     /* Centers the headings and paragraphs */
+    }
+
+    /* 3. Center the Form Inputs and Button */
+    .contact-form {
+        margin: 0 auto;
+        padding: 30px 20px;
+    }
+
+    .contact-form .btn {
+        width: 100%;            /* Big, easy-to-tap button */
+    }
+
+    /* 4. Fix About Section and Resume Button */
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+    }
+
+    .resume-btn {
+        width: 100%;
+        display: block;
+        margin-top: 20px;
+    }
+}
+
+/* --- MOBILE FULL-WIDTH RESET --- */
+@media (max-width: 768px) {
+    /* 1. Remove the side-by-side flex layout */
+    .resume-container {
+        display: block; /* Stacks aside and main vertically */
+        width: 100%;
+        padding: 20px;
+        box-shadow: none;
+    }
+
+    /* 2. Transform the Sidebar into a Top Header */
+    .sidebar {
+        width: 100% !important; /* Full width on mobile */
+        text-align: center;
+        padding: 40px 20px;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .resume-photo {
+        margin: 0 auto 20px auto; /* Centers your image */
+    }
+
+    /* 3. Make Contact & Skills horizontal for better flow */
+    .contact-info, .skills-section {
+        display: block;
+        text-align: center;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        padding: 0;
+    }
+
+    /* 4. Expand Main Content to Full Screen */
+    .main-content {
+        width: 100% !important; /* Full width on mobile */
+        padding: 40px 20px;
+    }
+
+    /* 5. Center the Titles for a Premium Feel */
+    .main-content h2 {
+        text-align: center;
+        border-left: none;
+        border-bottom: 2px solid var(--gold);
+        padding-left: 0;
+        padding-bottom: 10px;
+    }
+}
