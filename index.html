@@ -13,7 +13,9 @@
 
     <header>
         <nav class="navbar animate-fade-down">
-            <div class="logo">Geypey Web Studio</div>
+            <a href="index.html" class="logo-link">
+    <img src="img/logo-image.png" alt="Geypey Web Studio" class="nav-logo">
+</a>
             <button id="theme-toggle" class="theme-btn">
     <span id="theme-icon">🌙</span>
 </button>
@@ -91,6 +93,64 @@
         </div>
 
         <div class="project-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="img/amarlux-preview.png" alt="Amarlux Executive Realty">
+                </div>
+                <div class="project-info">
+                    <span class="project-category">Corporate Real Estate Platform</span>
+                    <h3>Amarlux Executive Showcase</h3>
+                    <p>A high-end digital storefront engineered for premium Ikoyi and V.I. real estate, featuring an exclusive dark theme and direct lead funnels.</p>
+                    
+                    <div class="tech-stack">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                    <a href="https://iyeregodpower-ctrl.github.io/amarlux/" target="_blank" class="project-link">View Project &rarr;</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="img/fisayo-preview.png" alt="Fisayo Official Website">
+                </div>
+                <div class="project-info">
+                    <span class="project-category">Personal Brand & Portfolio</span>
+                    <h3>Fisayo Digital Infrastructure</h3>
+                    <p>A custom-engineered digital portfolio designed to elevate personal branding, showcase professional authority, and streamline client connections.</p>
+                    
+                    <div class="tech-stack">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                    <a href="https://iyeregodpower-ctrl.github.io/fisayo-tech/" target="_blank" class="project-link">View Project &rarr;</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="img/kamsi-preview.png" alt="Kamsi Digital Hub">
+                </div>
+                <div class="project-info">
+                    <span class="project-category">UI/UX & Web Platform</span>
+                    <h3>Kamsi Business Hub</h3>
+                    <p>A sleek, high-converting web platform crafted to optimize user interactions and present a premium digital footprint for the modern market.</p>
+                    
+                    <div class="tech-stack">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                    <a href="https://iyeregodpower-ctrl.github.io/kamsi-web/" target="_blank" class="project-link">View Project &rarr;</a>
+                </div>
+            </div>
+
+        
             
             <div class="project-card">
                 <div class="project-image">
@@ -157,6 +217,7 @@
                     <img src="img/aura-preview.jpg" alt="Aura Luxury Hotel">
                 </div>
                 <div class="project-info">
+                    <span class="project-category">Hospitality / UI/UX</span>
                     <h3>Aura Luxury Hotel</h3>
                     <p>A premium UI/UX booking experience featuring a custom grid layout, glassmorphism, and a high-end typography system.</p>
                     <div class="tech-stack">
@@ -196,7 +257,7 @@
     <img src="img/lounge-preview.png" alt="Neon Lounge VIP Booking App" class="project-image">
     
     <div class="project-info">
-        <span class="project-tag">Hospitality / Web App</span>
+        <span class="project-category">Hospitality / Web App</span>
         <h3>Neon Lounge</h3>
         <p>A premium digital experience for a luxury nightlife venue. Features a dynamic, zero-reload tabbed menu and a fully integrated, real-time VIP table reservation system.</p>
         
@@ -215,6 +276,12 @@
 </div>
         </div>
     </section>
+    
+    <div class="pagination-controls">
+            <button id="prev-btn" class="page-btn" disabled>&larr; Prev</button>
+            <span id="page-info">Page 1 of 2</span>
+            <button id="next-btn" class="page-btn">Next &rarr;</button>
+        </div>
     
     <section id="contact" class="contact-section">
     <div class="contact-container">
@@ -368,6 +435,67 @@ contactForm.addEventListener('submit', async (e) => {
         submitBtn.disabled = false;
     }
 });
+
+// =========================================
+// PAGINATION LOGIC
+// =========================================
+
+// 1. Grab the elements we need to control
+const projectCards = document.querySelectorAll('.project-card');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const pageInfo = document.getElementById('page-info');
+
+// 2. Set our variables
+let currentPage = 1; // We use 'let' because the page number will change
+const cardsPerPage = 4; // Change this number to show more/less cards per page
+const totalPages = Math.ceil(projectCards.length / cardsPerPage);
+
+// 3. Create the function that shows the correct cards
+function showPage(page) {
+    // Calculate the start and end point for the loop
+    const startItem = (page - 1) * cardsPerPage;
+    const endItem = startItem + cardsPerPage;
+
+    // Loop through all cards. Show it if it falls in the range, hide it if it doesn't.
+    projectCards.forEach((card, index) => {
+        if (index >= startItem && index < endItem) {
+            card.style.display = 'block'; // Show card
+            // Add a slight delay to the animation so they pop in nicely
+            card.style.animation = `slideUp 0.5s ease forwards`; 
+        } else {
+            card.style.display = 'none'; // Hide card
+        }
+    });
+
+    // Update the text in the middle
+    pageInfo.innerText = `Page ${page} of ${totalPages}`;
+
+    // Disable the Prev button if on page 1, Disable Next if on the last page
+    prevBtn.disabled = page === 1;
+    nextBtn.disabled = page === totalPages;
+}
+
+// 4. Make the buttons actually work when clicked
+prevBtn.addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage--; // Subtract 1 from the page variable
+        showPage(currentPage);
+        // Scroll smoothly back to the top of the work section
+        document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+    }
+});
+
+nextBtn.addEventListener('click', () => {
+    if (currentPage < totalPages) {
+        currentPage++; // Add 1 to the page variable
+        showPage(currentPage);
+        document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+    }
+});
+
+// 5. Run the function once immediately so the page loads correctly
+showPage(1);
 
 </script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
