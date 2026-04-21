@@ -401,7 +401,7 @@ header {
 @media (max-width: 768px) {
     .project-image img {
         height: 200px;
-        width: 150%;
+        width: 120%;
     }
 }
 
