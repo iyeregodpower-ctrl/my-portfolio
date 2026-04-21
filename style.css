@@ -180,12 +180,6 @@ header {
     margin: 0 auto; 
 }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: 900;
-    color: var(--text-main);
-    letter-spacing: -0.5px;
-}
 
 .nav-links {
     list-style: none;
@@ -1053,7 +1047,7 @@ body.dark-mode .tech-stack span {
 
 /* --- NEW LOGO STYLES --- */
 .nav-logo {
-    height: 75px; /* Increased from 45px to make it much bigger */
+    height: 70px; /* Increased from 45px to make it much bigger */
     width: auto;
     transition: all 0.3s ease;
     display: block; 
